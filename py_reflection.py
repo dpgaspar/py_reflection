@@ -4,13 +4,7 @@ import os, pkgutil
 import imp
 MODULE_EXTENSIONS = ('.py', '.pyc', '.pyo')
 
-import flask.ext.appbuilder
 from flask.ext.appbuilder import views, filters
-
-
-def get_modules(p):
-	pkgpath = os.path.dirname(p.__file__)
-	return [a for a, name, b in pkgutil.iter_modules([pkgpath])]
 
 def get_classes(a):
 	return [b for a,b in inspect.getmembers(a, inspect.isclass)]
@@ -31,10 +25,8 @@ def show_class_tree(a):
 	print_class_tree(inspect.getclasstree(get_classes(a)))
 
 print "-------------- VIEWS ----------------"
-show_class_tree(views)
+show_class_tree(sys.modules['flask.ext.appbuilder.views'])
 print "-------------- FILTERS ----------------"
-show_class_tree(filters)
+show_class_tree(sys.modules['flask.ext.appbuilder.filters'])
 print "------------- PACKAGE CONTENT --------"
-for m in get_modules(flask.ext.appbuilder):
-	print m.__module__
 	
