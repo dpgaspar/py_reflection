@@ -1,0 +1,221 @@
+importing: flask_appbuilder
+importing: flask_appbuilder.actions
+importing: flask_appbuilder.babel
+importing: flask_appbuilder.babel.manager
+UPLOAD_FOLDER, IMG_UPLOAD_FOLDER, IMG_UPLOAD_URL not found. Using default
+importing: flask_appbuilder.babel.views
+importing: flask_appbuilder.baseapp
+importing: flask_appbuilder.charts
+importing: flask_appbuilder.charts.views
+importing: flask_appbuilder.charts.widgets
+importing: flask_appbuilder.filemanager
+importing: flask_appbuilder.filters
+importing: flask_appbuilder.forms
+importing: flask_appbuilder.menu
+importing: flask_appbuilder.messages
+importing: flask_appbuilder.models
+importing: flask_appbuilder.models.datamodel
+importing: flask_appbuilder.models.filters
+importing: flask_appbuilder.models.mixins
+importing: flask_appbuilder.security
+importing: flask_appbuilder.security.decorators
+importing: flask_appbuilder.security.forms
+importing: flask_appbuilder.security.manager
+importing: flask_appbuilder.security.models
+importing: flask_appbuilder.security.views
+importing: flask_appbuilder.translations
+importing: flask_appbuilder.upload
+importing: flask_appbuilder.urltools
+importing: flask_appbuilder.validators
+importing: flask_appbuilder.views
+importing: flask_appbuilder.widgets
+ ('QuerySelectField', <class 'wtforms.ext.sqlalchemy.fields.QuerySelectField'>)
+- ('QuerySelectMultipleField', <class 'wtforms.ext.sqlalchemy.fields.QuerySelectMultipleField'>)
+ ('unicode', <type 'unicode'>)
+- ('HTMLString', <class 'wtforms.widgets.core.HTMLString'>)
+ ('TypeEngine', <class 'sqlalchemy.sql.type_api.TypeEngine'>)
+- ('Boolean', <class 'sqlalchemy.sql.sqltypes.Boolean'>)
+- ('String', <class 'sqlalchemy.sql.sqltypes.String'>)
+- ('DateTime', <class 'sqlalchemy.sql.sqltypes.DateTime'>)
+ ('Exception', <type 'exceptions.Exception'>)
+- ('SQLAlchemyError', <class 'sqlalchemy.exc.SQLAlchemyError'>)
+-- ('InvalidRequestError', <class 'sqlalchemy.exc.InvalidRequestError'>)
+ ('declared_attr', <class 'sqlalchemy.ext.declarative.api.declared_attr'>)
+ ('FileUploadField', <class 'flask_appbuilder.upload.FileUploadField'>)
+ ('IntegrityError', <class 'sqlalchemy.exc.IntegrityError'>)
+ ('PasswordInput', <class 'wtforms.widgets.core.PasswordInput'>)
+- ('BS3PasswordFieldWidget', <class 'flask_appbuilder.forms.BS3PasswordFieldWidget'>)
+ ('BaseApp', <class flask_appbuilder.baseapp.BaseApp at 0x39cd120>)
+ ('DynamicForm', <class 'flask_appbuilder.forms.DynamicForm'>)
+- ('ResetPasswordForm', <class 'flask_appbuilder.security.forms.ResetPasswordForm'>)
+- ('LoginForm_db', <class 'flask_appbuilder.security.forms.LoginForm_db'>)
+- ('LoginForm_oid', <class 'flask_appbuilder.security.forms.LoginForm_oid'>)
+ ('BS3TextAreaFieldWidget', <class 'flask_appbuilder.forms.BS3TextAreaFieldWidget'>)
+ ('DatabaseError', <class 'sqlalchemy.exc.DatabaseError'>)
+ ('BooleanField', <class 'wtforms.fields.core.BooleanField'>)
+ ('MetaData', <class 'sqlalchemy.sql.schema.MetaData'>)
+ ('AuditMixin', <class 'flask_appbuilder.models.mixins.AuditMixin'>)
+ ('LocaleView', <class 'flask_appbuilder.babel.views.LocaleView'>)
+ ('object', <type 'object'>)
+- ('groupby', <type 'itertools.groupby'>)
+- ('OpenIDResponse', <class 'flask_openid.OpenIDResponse'>)
+- ('OpenID', <class 'flask_openid.OpenID'>)
+- ('Inspector', <class 'sqlalchemy.engine.reflection.Inspector'>)
+- ('DatePickerWidget', <class 'flask_appbuilder.forms.DatePickerWidget'>)
+- ('EqualTo', <class 'wtforms.validators.EqualTo'>)
+- ('Filters', <class 'flask_appbuilder.models.filters.Filters'>)
+- ('GeneralModelConverter', <class 'flask_appbuilder.forms.GeneralModelConverter'>)
+- ('basestring', <type 'basestring'>)
+- ('Base', <class 'sqlalchemy.ext.declarative.api.Base'>)
+- ('BS3FileUploadFieldWidget', <class 'flask_appbuilder.upload.BS3FileUploadFieldWidget'>)
+- ('BabelManager', <class 'flask_appbuilder.babel.manager.BabelManager'>)
+- ('SecurityManager', <class 'flask_appbuilder.security.manager.SecurityManager'>)
+- ('Visitable', <class 'sqlalchemy.sql.visitors.Visitable'>)
+-- ('SchemaItem', <class 'sqlalchemy.sql.schema.SchemaItem'>)
+--- ('ForeignKey', <class 'sqlalchemy.sql.schema.ForeignKey'>)
+--- ('Table', <class 'sqlalchemy.sql.schema.Table'>)
+--- ('MetaData', <class 'sqlalchemy.sql.schema.MetaData'>)
+--- ('Column', <class 'sqlalchemy.sql.schema.Column'>)
+- ('BaseMixin', <class 'flask_appbuilder.models.mixins.BaseMixin'>)
+- ('Input', <class 'wtforms.widgets.core.Input'>)
+-- ('TextInput', <class 'wtforms.widgets.core.TextInput'>)
+- ('Select', <class 'wtforms.widgets.core.Select'>)
+-- ('Select2Widget', <class 'flask_appbuilder.forms.Select2Widget'>)
+- ('Consumer', <class 'openid.consumer.consumer.Consumer'>)
+- ('BaseForm', <class 'wtforms.form.BaseForm'>)
+- ('FileStorage', <class 'werkzeug.datastructures.FileStorage'>)
+- ('DateTimePickerWidget', <class 'flask_appbuilder.forms.DateTimePickerWidget'>)
+- ('LoginManager', <class 'flask_login.LoginManager'>)
+- ('BS3ImageUploadFieldWidget', <class 'flask_appbuilder.upload.BS3ImageUploadFieldWidget'>)
+- ('Concatenable', <class 'sqlalchemy.sql.sqltypes.Concatenable'>)
+-- ('String', <class 'sqlalchemy.sql.sqltypes.String'>)
+- ('_DateAffinity', <class 'sqlalchemy.sql.sqltypes._DateAffinity'>)
+-- ('Integer', <class 'sqlalchemy.sql.sqltypes.Integer'>)
+- ('Unique', <class 'flask_appbuilder.validators.Unique'>)
+- ('MenuItem', <class 'flask_appbuilder.menu.MenuItem'>)
+- ('Field', <class 'wtforms.fields.core.Field'>)
+-- ('SelectFieldBase', <class 'wtforms.fields.core.SelectFieldBase'>)
+-- ('DateTimeField', <class 'wtforms.fields.core.DateTimeField'>)
+-- ('StringField', <class 'wtforms.fields.core.StringField'>)
+--- ('TextField', <class 'wtforms.fields.simple.TextField'>)
+---- ('ImageUploadField', <class 'flask_appbuilder.upload.ImageUploadField'>)
+---- ('FileUploadField', <class 'flask_appbuilder.upload.FileUploadField'>)
+---- ('PasswordField', <class 'wtforms.fields.simple.PasswordField'>)
+-- ('BooleanField', <class 'wtforms.fields.core.BooleanField'>)
+-- ('IntegerField', <class 'wtforms.fields.core.IntegerField'>)
+- ('BaseException', <type 'exceptions.BaseException'>)
+- ('SchemaEventTarget', <class 'sqlalchemy.sql.base.SchemaEventTarget'>)
+- ('SessionWrapper', <class 'flask_openid.SessionWrapper'>)
+- ('_PackageBoundObject', <class 'flask.helpers._PackageBoundObject'>)
+-- ('Blueprint', <class 'flask.blueprints.Blueprint'>)
+- ('Menu', <class 'flask_appbuilder.menu.Menu'>)
+- ('BaseView', <class 'flask_appbuilder.views.BaseView'>)
+-- ('IndexView', <class 'flask_appbuilder.views.IndexView'>)
+-- ('SimpleFormView', <class 'flask_appbuilder.views.SimpleFormView'>)
+- ('RenderTemplateWidget', <class 'flask_appbuilder.widgets.RenderTemplateWidget'>)
+-- ('ShowWidget', <class 'flask_appbuilder.widgets.ShowWidget'>)
+-- ('FormWidget', <class 'flask_appbuilder.widgets.FormWidget'>)
+- ('BaseFilter', <class 'flask_appbuilder.models.filters.BaseFilter'>)
+-- ('FilterEqual', <class 'flask_appbuilder.models.filters.FilterEqual'>)
+-- ('FilterNotStartsWith', <class 'flask_appbuilder.models.filters.FilterNotStartsWith'>)
+-- ('FilterStartsWith', <class 'flask_appbuilder.models.filters.FilterStartsWith'>)
+-- ('FilterRelation', <class 'flask_appbuilder.models.filters.FilterRelation'>)
+--- ('FilterRelationManyToManyEqual', <class 'flask_appbuilder.models.filters.FilterRelationManyToManyEqual'>)
+--- ('FilterRelationOneToManyNotEqual', <class 'flask_appbuilder.models.filters.FilterRelationOneToManyNotEqual'>)
+--- ('FilterRelationOneToManyEqual', <class 'flask_appbuilder.models.filters.FilterRelationOneToManyEqual'>)
+-- ('FilterNotContains', <class 'flask_appbuilder.models.filters.FilterNotContains'>)
+-- ('FilterGreater', <class 'flask_appbuilder.models.filters.FilterGreater'>)
+-- ('FilterSmaller', <class 'flask_appbuilder.models.filters.FilterSmaller'>)
+-- ('FilterEndsWith', <class 'flask_appbuilder.models.filters.FilterEndsWith'>)
+-- ('FilterEqualFunction', <class 'flask_appbuilder.models.filters.FilterEqualFunction'>)
+-- ('FilterContains', <class 'flask_appbuilder.models.filters.FilterContains'>)
+-- ('FilterNotEndsWith', <class 'flask_appbuilder.models.filters.FilterNotEndsWith'>)
+-- ('FilterNotEqual', <class 'flask_appbuilder.models.filters.FilterNotEqual'>)
+- ('DataRequired', <class 'wtforms.validators.DataRequired'>)
+-- ('Required', <class 'wtforms.validators.Required'>)
+- ('FileManager', <class 'flask_appbuilder.filemanager.FileManager'>)
+-- ('ImageManager', <class 'flask_appbuilder.filemanager.ImageManager'>)
+- ('TextArea', <class 'wtforms.widgets.core.TextArea'>)
+- ('Extension', <class 'openid.extension.Extension'>)
+-- ('SRegResponse', <class 'openid.extensions.sreg.SRegResponse'>)
+- ('property', <type 'property'>)
+- ('_MappedAttribute', <class 'sqlalchemy.orm.base._MappedAttribute'>)
+- ('TemplateFilters', <class 'flask_appbuilder.filters.TemplateFilters'>)
+- ('Length', <class 'wtforms.validators.Length'>)
+ ('Form', <class 'wtforms.form.Form'>)
+ ('ChartWidget', <class 'flask_appbuilder.charts.widgets.ChartWidget'>)
+ ('AuthDBView', <class 'flask_appbuilder.security.views.AuthDBView'>)
+ ('StandardError', <type 'exceptions.StandardError'>)
+ ('NewBase', <class 'wtforms.compat.NewBase'>)
+ ('Blueprint', <class 'flask.blueprints.Blueprint'>)
+ ('PermissionGeneralView', <class 'flask_appbuilder.security.views.PermissionGeneralView'>)
+ ('UserDBGeneralView', <class 'flask_appbuilder.security.views.UserDBGeneralView'>)
+ ('NoResultFound', <class 'sqlalchemy.orm.exc.NoResultFound'>)
+ ('DataModel', <class flask_appbuilder.models.datamodel.DataModel at 0x39cdae0>)
+- ('SQLAModel', <class flask_appbuilder.models.datamodel.SQLAModel at 0x39cdb48>)
+ ('BaseCRUDView', <class 'flask_appbuilder.views.BaseCRUDView'>)
+- ('GeneralView', <class 'flask_appbuilder.views.GeneralView'>)
+ ('DBAPIError', <class 'sqlalchemy.exc.DBAPIError'>)
+ ('Babel', <class 'flask_babelpkg.Babel'>)
+ ('ResetMyPasswordView', <class 'flask_appbuilder.security.views.ResetMyPasswordView'>)
+ ('BS3PasswordFieldWidget', <class 'flask_appbuilder.forms.BS3PasswordFieldWidget'>)
+ ('BaseChartView', <class 'flask_appbuilder.charts.views.BaseChartView'>)
+- ('TimeChartView', <class 'flask_appbuilder.charts.views.TimeChartView'>)
+- ('ChartView', <class 'flask_appbuilder.charts.views.ChartView'>)
+ ('SessionSecureForm', <class 'wtforms.ext.csrf.session.SessionSecureForm'>)
+- ('Form', <class 'flask_wtf.form.Form'>)
+ ('FileColumn', <class 'flask_appbuilder.models.mixins.FileColumn'>)
+ ('SecureForm', <class 'wtforms.ext.csrf.form.SecureForm'>)
+ ('DateField', <class 'wtforms.fields.core.DateField'>)
+ ('GeneralView', <class 'flask_appbuilder.views.GeneralView'>)
+- ('PermissionViewGeneralView', <class 'flask_appbuilder.security.views.PermissionViewGeneralView'>)
+- ('ViewMenuGeneralView', <class 'flask_appbuilder.security.views.ViewMenuGeneralView'>)
+- ('RoleGeneralView', <class 'flask_appbuilder.security.views.RoleGeneralView'>)
+- ('PermissionGeneralView', <class 'flask_appbuilder.security.views.PermissionGeneralView'>)
+- ('UserGeneralView', <class 'flask_appbuilder.security.views.UserGeneralView'>)
+-- ('UserOIDGeneralView', <class 'flask_appbuilder.security.views.UserOIDGeneralView'>)
+ ('ListCarousel', <class 'flask_appbuilder.widgets.ListCarousel'>)
+ ('TextField', <class 'wtforms.fields.simple.TextField'>)
+- ('HiddenField', <class 'wtforms.fields.simple.HiddenField'>)
+- ('ImageUploadField', <class 'flask_appbuilder.upload.ImageUploadField'>)
+- ('FileUploadField', <class 'flask_appbuilder.upload.FileUploadField'>)
+- ('TextAreaField', <class 'wtforms.fields.simple.TextAreaField'>)
+- ('PasswordField', <class 'wtforms.fields.simple.PasswordField'>)
+ ('SQLAModel', <class flask_appbuilder.models.datamodel.SQLAModel at 0x39cdb48>)
+ ('BS3TextFieldWidget', <class 'flask_appbuilder.forms.BS3TextFieldWidget'>)
+ ('ActionItem', <class flask_appbuilder.actions.ActionItem at 0x3050390>)
+ ('Form', <class 'flask_wtf.form.Form'>)
+- ('DynamicForm', <class 'flask_appbuilder.forms.DynamicForm'>)
+ ('TypeDecorator', <class 'sqlalchemy.sql.type_api.TypeDecorator'>)
+- ('FileColumn', <class 'flask_appbuilder.models.mixins.FileColumn'>)
+- ('ImageColumn', <class 'flask_appbuilder.models.mixins.ImageColumn'>)
+ ('ValidationError', <class 'wtforms.validators.ValidationError'>)
+ ('HTMLString', <class 'wtforms.widgets.core.HTMLString'>)
+ ('ValueError', <type 'exceptions.ValueError'>)
+- ('ValidationError', <class 'wtforms.validators.ValidationError'>)
+ ('SearchWidget', <class 'flask_appbuilder.widgets.SearchWidget'>)
+ ('StatementError', <class 'sqlalchemy.exc.StatementError'>)
+ ('Required', <class 'wtforms.validators.Required'>)
+ ('Select2ManyWidget', <class 'flask_appbuilder.forms.Select2ManyWidget'>)
+ ('SRegRequest', <class 'openid.extensions.sreg.SRegRequest'>)
+True
+True
+True
+True
+True
+True
+True
+True
+True
+False
+True
+ A
+- AA
+ AA
+ C
+- CC
+-- CCC
+ B
+- BB
+-- BBB
+--- BBBB
