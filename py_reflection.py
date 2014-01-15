@@ -14,9 +14,11 @@ class TreeDict(object):
         
     def set_node(self, key, tree = None):
         if tree is None: tree = self.tree
-        childs = {}
-        tree[key] = childs
-        return True
+        if key not in tree:
+            childs = {}
+            tree[key] = childs
+            return True
+        return False
         
     def add_node(self, key, parent_key = None, tree = None, depth = 0, flag = False):
         if tree is None: tree = self.tree
@@ -34,7 +36,7 @@ class TreeDict(object):
         tree = tree or self.tree
         for key in tree:
             childs = tree.get(key)
-            print '-' * depth, key
+            print '|' + '-' * depth + '>', key
             if childs: self.debug(childs, depth +1)
 
 
@@ -51,8 +53,12 @@ class ClassReflet(object):
         
     
     def import_module(self, module_name):
-        print "importing: %s" % (module_name)
-        return __import__(module_name)
+        #print "importing: %s" % (module_name)
+        try:
+            return __import__(module_name)
+        except:
+            print "import Error %s" % (module_name)
+            return None
     
     def import_all(self, module, depth = 0):
         for imp, name, ispkg in self.get_modules(module):
@@ -63,20 +69,23 @@ class ClassReflet(object):
                 self.import_module(module.__name__ + '.' + name)
         
     def get_all_classes(self, module, depth = 0):
-        for imp, name, ispkg in self.get_modules(module):
-            if ispkg: 
-                self.get_all_classes(getattr(module,name), depth + 1)
-            else:
-                for name, value in self.get_classes(getattr(module,name)):
-                    self.add_class(name,value)
+        modules = self.get_modules(module)
+        if modules:
+            for imp, name, ispkg in modules:
+                if ispkg: 
+                    if hasattr(module, name):
+                        self.get_all_classes(getattr(module,name), depth + 1)
+                else:
+                    if hasattr(module, name):
+                        for name, value in self.get_classes(getattr(module,name)):
+                            self.add_class(name,value)
         for name, value in self.get_classes(module):
             self.add_class(name,value)
         
-    def add_class(self, name, value):
+    def add_class(self, name, value, depth = 0):
         for parent in value.__bases__:
-            if not self.class_tree.add_node((name, value),(parent.__name__,parent)):
-                self.add_class(parent.__name__,parent)
-            else: return
+            self.add_class(parent.__name__,parent, depth + 1)
+            return self.class_tree.add_node((name, value),(parent.__name__,parent))
         self.class_tree.add_node((name, value))
         
     def get_classes(self, module = None):
@@ -85,36 +94,21 @@ class ClassReflet(object):
 
     def get_modules(self, module = None):
         module = module or self.package
-        return [(imp, name, ispkg) for (imp, name, ispkg) in pkgutil.iter_modules(module.__path__)]
+        if hasattr(module,'__path__'):
+            return [(imp, name, ispkg) for (imp, name, ispkg) in pkgutil.iter_modules(module.__path__)]
+        else: return []
 
 
 
-        
-def print_class_tree(tree, indent=-1):
-    if isinstance(tree, list):
-        for node in tree:
-            print_class_tree(node, indent+1)
-    else:
-        print '  ' * indent, tree[0].__name__
-    return
-
-
-def show_class_tree(a):
-	print_class_tree(inspect.getclasstree(get_classes(a)))
-
-cr = ClassReflet('flask_appbuilder')	
+cr = ClassReflet('werkzeug')
 cr.class_tree.debug()
 
+"""
 t = TreeDict()
-print t.add_node('A')
-print t.add_node('B')
-print t.add_node('C')
-print t.add_node('CC','C')
-print t.add_node('BB','B')
-print t.add_node('BBB','BB')
-print t.add_node('BBBB','BBB')
-print t.add_node('AA','A')
-print t.add_node('CCC','CC')
-print t.add_node('ZZ','ZZ')
-print t.add_node('AA')
+t.add_node('object')
+t.add_node('basestring','object')
+t.add_node('text_type','basestring')
+t.add_node('object')
+t.add_node('Babel','object')
 t.debug()
+"""
