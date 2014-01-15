@@ -2,58 +2,52 @@ import inspect
 import sys
 import os, pkgutil
 import imp
-MODULE_EXTENSIONS = ('.py', '.pyc', '.pyo')
+import json
+from treedict import TreeDict
 
 
-class TreeDict(object):
+class ClassNode(object):
     
-    tree = None
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+        
+    def __repr__(self):
+        return self.value.__module__ + '.' + self.name
+ 
+    def dump(self, depth):
+        retstr = self.value.__module__ + '.' + self.name
+        for i in self.value.__dict__:
+            if hasattr(i, '__call__'):
+                retstr = retstr + '\n' + ' ' * (depth+2) + i + '()'
+        return retstr
+        
+    def __str__(self):
+        return self.__repr__()
     
-    def __init__(self):
-        self.tree = {}
-        
-    def set_node(self, key, tree = None):
-        if tree is None: tree = self.tree
-        if key not in tree:
-            childs = {}
-            tree[key] = childs
-            return True
-        return False
-        
-    def add_node(self, key, parent_key = None, tree = None, depth = 0, flag = False):
-        if tree is None: tree = self.tree
-        if parent_key:
-            for _key in tree:
-                if _key == parent_key:
-                    return self.set_node(key, tree.get(_key))
-                else: 
-                    flag = self.add_node(key, parent_key, tree.get(_key), depth + 1, flag)
-            return flag
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.name == other.name
         else:
-            return self.set_node(key, tree)
-    
-    def debug(self, tree = None, depth = 0):
-        tree = tree or self.tree
-        for key in tree:
-            childs = tree.get(key)
-            print '|' + '-' * depth + '>', key
-            if childs: self.debug(childs, depth +1)
+            return False
+        
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
+    def __hash__(self):
+        return hash(str(self))
 
-
-class ClassReflet(object):
+class PKGModuleRefletion(object):
 
     def __init__(self, package_name):
         self.package_name = package_name
+        self.class_tree = TreeDict()
         self.package = self.import_module(self.package_name)
         self.modules = self.get_modules()
-        self.class_tree = TreeDict()
         self.import_all(self.package)
         self.get_all_classes(self.package)
-        
     
     def import_module(self, module_name):
-        #print "importing: %s" % (module_name)
         try:
             return __import__(module_name)
         except:
@@ -64,7 +58,8 @@ class ClassReflet(object):
         for imp, name, ispkg in self.get_modules(module):
             if ispkg: 
                 package = self.import_module(module.__name__ + '.' + name)
-                self.import_all(getattr(module,name), depth + 1)
+                if hasattr(module, name):
+                    self.import_all(getattr(module,name), depth + 1)
             else: 
                 self.import_module(module.__name__ + '.' + name)
         
@@ -85,8 +80,8 @@ class ClassReflet(object):
     def add_class(self, name, value, depth = 0):
         for parent in value.__bases__:
             self.add_class(parent.__name__,parent, depth + 1)
-            return self.class_tree.add_node((name, value),(parent.__name__,parent))
-        self.class_tree.add_node((name, value))
+            return self.class_tree.add_node(ClassNode(name, value),ClassNode(parent.__name__,parent))
+        self.class_tree.add_node(ClassNode(name, value))
         
     def get_classes(self, module = None):
         module = module or self.package
@@ -99,16 +94,6 @@ class ClassReflet(object):
         else: return []
 
 
-
-cr = ClassReflet('werkzeug')
-cr.class_tree.debug()
-
-"""
-t = TreeDict()
-t.add_node('object')
-t.add_node('basestring','object')
-t.add_node('text_type','basestring')
-t.add_node('object')
-t.add_node('Babel','object')
-t.debug()
-"""
+cr = PKGModuleRefletion(sys.argv[1])
+#cr.class_tree.debug()
+cr.class_tree.print_map(map_func=ClassNode.dump)
