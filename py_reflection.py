@@ -6,10 +6,29 @@ import json
 from treedict import TreeDict
 
 class Node(object):
-    
+
     def __init__(self, name, value):
         self.name = name
         self.value = value
+
+    def __repr__(self):
+        pass
+    
+    def __str__(self):
+        return self.__repr__()
+     
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.name == other.name
+        else:
+            return False
+        
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __hash__(self):
+        return hash(str(self))
+
 
 class ClassNode(Node):
     
@@ -25,28 +44,12 @@ class ClassNode(Node):
             if hasattr(getattr(self.value,i), '__call__'):
                 retstr = retstr + '\n' + ' ' * (depth+2) + i + '()'
         return retstr
-        
-    def __str__(self):
-        return self.__repr__()
-    
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            return self.name == other.name
-        else:
-            return False
-        
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-    def __hash__(self):
-        return hash(str(self))
-
+            
 
 class BaseReflection(object):
     
     def __init__(self, obj_reflection):
         self.obj_reflection = obj_reflection
-
 
 class PKGModuleReflection(BaseReflection):
 
@@ -111,3 +114,5 @@ class PKGModuleReflection(BaseReflection):
 cr = PKGModuleReflection(sys.argv[1])
 cr.class_tree.debug()
 #cr.class_tree.print_map(map_func=ClassNode.dump)
+new_tree = {}
+print cr.class_tree.get_json_d3(new_tree = new_tree)

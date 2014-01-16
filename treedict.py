@@ -41,4 +41,10 @@ class TreeDict(object):
             print '|' + '-' * depth + '>', map_func(key, depth)
             if childs: self.print_map(childs, map_func = map_func, depth = depth +1)
 
-    
+    def get_json_d3(self, tree = None, new_tree = None, depth = 0):
+        tree = tree or self.tree
+        new_tree = new_tree or {}
+        for key in tree:
+            new_tree['name'] = str(key)
+            childs = tree.get(key)
+            if childs: self.get_json_d3(childs, new_tree, depth+1)
