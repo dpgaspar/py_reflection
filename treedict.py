@@ -31,7 +31,7 @@ class TreeDict(object):
         tree = tree or self.tree
         for key in tree:
             childs = tree.get(key)
-            print '|' + '-' * depth + '>', key
+            print '|' + '_' * depth, key
             if childs: self.debug(childs, depth +1)
 
     def print_map(self, tree = None, map_func = None, depth = 0):
@@ -41,4 +41,4 @@ class TreeDict(object):
             print '|' + '-' * depth + '>', map_func(key, depth)
             if childs: self.print_map(childs, map_func = map_func, depth = depth +1)
 
-            
+    

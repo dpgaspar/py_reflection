@@ -5,12 +5,16 @@ import imp
 import json
 from treedict import TreeDict
 
-
-class ClassNode(object):
+class Node(object):
     
     def __init__(self, name, value):
         self.name = name
         self.value = value
+
+class ClassNode(Node):
+    
+    def __init__(self, *kwargs):
+        super(ClassNode, self).__init__(*kwargs)
         
     def __repr__(self):
         return self.value.__module__ + '.' + self.name
@@ -43,14 +47,8 @@ class BaseReflection(object):
     def __init__(self, obj_reflection):
         self.obj_reflection = obj_reflection
 
-class Mix(object):
-    
-    e = 1
-    
-    def set_e(self, e):
-        self.e = e
 
-class PKGModuleRefletion(Mix, BaseReflection):
+class PKGModuleReflection(BaseReflection):
 
     def __init__(self, package_name):
         self.package_name = package_name
@@ -92,10 +90,12 @@ class PKGModuleRefletion(Mix, BaseReflection):
 
     
     def add_class(self, name, value, depth = 0):
+        flag = True
         for parent in value.__bases__:
+            flag = False
             self.add_class(parent.__name__,parent, depth + 1)
             self.class_tree.add_node(ClassNode(name, value),ClassNode(parent.__name__,parent))
-        self.class_tree.add_node(ClassNode(name, value))
+        if flag: self.class_tree.add_node(ClassNode(name, value))
     
     def get_classes(self, module = None):
         module = module or self.package
@@ -108,6 +108,6 @@ class PKGModuleRefletion(Mix, BaseReflection):
         else: return []
 
 
-cr = PKGModuleRefletion(sys.argv[1])
+cr = PKGModuleReflection(sys.argv[1])
 cr.class_tree.debug()
 #cr.class_tree.print_map(map_func=ClassNode.dump)
