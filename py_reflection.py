@@ -18,7 +18,7 @@ class ClassNode(object):
     def dump(self, depth):
         retstr = self.value.__module__ + '.' + self.name
         for i in self.value.__dict__:
-            if hasattr(i, '__call__'):
+            if hasattr(getattr(self.value,i), '__call__'):
                 retstr = retstr + '\n' + ' ' * (depth+2) + i + '()'
         return retstr
         
@@ -37,7 +37,20 @@ class ClassNode(object):
     def __hash__(self):
         return hash(str(self))
 
-class PKGModuleRefletion(object):
+
+class BaseReflection(object):
+    
+    def __init__(self, obj_reflection):
+        self.obj_reflection = obj_reflection
+
+class Mix(object):
+    
+    e = 1
+    
+    def set_e(self, e):
+        self.e = e
+
+class PKGModuleRefletion(Mix, BaseReflection):
 
     def __init__(self, package_name):
         self.package_name = package_name
@@ -76,13 +89,14 @@ class PKGModuleRefletion(object):
                             self.add_class(name,value)
         for name, value in self.get_classes(module):
             self.add_class(name,value)
-        
+
+    
     def add_class(self, name, value, depth = 0):
         for parent in value.__bases__:
             self.add_class(parent.__name__,parent, depth + 1)
-            return self.class_tree.add_node(ClassNode(name, value),ClassNode(parent.__name__,parent))
+            self.class_tree.add_node(ClassNode(name, value),ClassNode(parent.__name__,parent))
         self.class_tree.add_node(ClassNode(name, value))
-        
+    
     def get_classes(self, module = None):
         module = module or self.package
         return [(a,b) for a,b in inspect.getmembers(module, inspect.isclass)]
@@ -95,5 +109,5 @@ class PKGModuleRefletion(object):
 
 
 cr = PKGModuleRefletion(sys.argv[1])
-#cr.class_tree.debug()
-cr.class_tree.print_map(map_func=ClassNode.dump)
+cr.class_tree.debug()
+#cr.class_tree.print_map(map_func=ClassNode.dump)

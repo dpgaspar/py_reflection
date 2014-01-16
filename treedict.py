@@ -41,4 +41,4 @@ class TreeDict(object):
             print '|' + '-' * depth + '>', map_func(key, depth)
             if childs: self.print_map(childs, map_func = map_func, depth = depth +1)
 
-
+            
