@@ -31,7 +31,7 @@ class TreeDict(object):
         tree = tree or self.tree
         for key in tree:
             childs = tree.get(key)
-            print '|' + '_' * depth, key
+            print '|' + '-' * depth + '>' + str(key)
             if childs: self.debug(childs, depth +1)
 
     def print_map(self, tree = None, map_func = None, depth = 0):
@@ -41,10 +41,24 @@ class TreeDict(object):
             print '|' + '-' * depth + '>', map_func(key, depth)
             if childs: self.print_map(childs, map_func = map_func, depth = depth +1)
 
-    def get_json_d3(self, tree = None, new_tree = None, depth = 0):
+    def _get_json_d3(self, tree = None, depth = 0):
+        """
+        [{ 'name':'NODE'}, {'name:'NODE', 'children':[{'name':'NODE'},...]},...]
+        """
         tree = tree or self.tree
-        new_tree = new_tree or {}
+        new = []
         for key in tree:
-            new_tree['name'] = str(key)
+            node = {}
+            node['name'] = str(key) 
             childs = tree.get(key)
-            if childs: self.get_json_d3(childs, new_tree, depth+1)
+            if childs:
+                node['children'] = self._get_json_d3(childs, depth +1)
+            new.append(node)
+        return new
+    
+    def get_json_d3(self):
+        new = {}
+        new['name'] = 'ROOT'
+        new['children'] = self._get_json_d3()
+        return new
+        

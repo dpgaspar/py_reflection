@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2.5px;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var treeData = {'name': 'ROOT', 'children': [{'name': 'object', 'children': [{'name': '_PackageBoundObject', 'children': [{'name': 'Blueprint'}]}, {'name': 'BaseForm', 'children': [{'name': 'NewBase', 'children': [{'name': 'Form', 'children': [{'name': 'DynamicForm', 'children': [{'name': 'ResetPasswordForm'}, {'name': 'LoginForm_db'}, {'name': 'LoginForm_oid'}]}, {'name': 'SecureForm', 'children': [{'name': 'SessionSecureForm', 'children': [{'name': 'Form'}]}]}]}]}]}, {'name': 'DatePickerWidget'}, {'name': 'SecurityManager'}, {'name': 'Babel'}, {'name': 'Field', 'children': [{'name': 'DateTimeField', 'children': [{'name': 'DateField'}]}, {'name': 'SelectFieldBase', 'children': [{'name': 'QuerySelectField', 'children': [{'name': 'QuerySelectMultipleField'}]}, {'name': 'SelectField'}]}, {'name': 'StringField', 'children': [{'name': 'TextField', 'children': [{'name': 'FileUploadField'}, {'name': 'ImageUploadField'}, {'name': 'HiddenField'}, {'name': 'PasswordField'}, {'name': 'TextAreaField'}]}]}, {'name': 'BooleanField'}, {'name': 'IntegerField'}]}, {'name': 'Input', 'children': [{'name': 'PasswordInput', 'children': [{'name': 'BS3PasswordFieldWidget'}]}, {'name': 'TextInput', 'children': [{'name': 'BS3TextFieldWidget'}]}]}, {'name': 'Immutable', 'children': [{'name': 'TableClause', 'children': [{'name': 'Table'}]}, {'name': 'ColumnClause', 'children': [{'name': 'Column'}]}]}, {'name': 'SchemaEventTarget', 'children': [{'name': 'SchemaType', 'children': [{'name': 'Boolean'}]}, {'name': 'SchemaItem', 'children': [{'name': 'Column'}, {'name': 'Table'}, {'name': 'ForeignKey'}, {'name': 'MetaData'}]}]}, {'name': 'ActionItem'}, {'name': 'basestring', 'children': [{'name': 'unicode', 'children': [{'name': 'HTMLString'}]}]}, {'name': 'BaseApp'}, {'name': 'BabelManager'}, {'name': 'TextArea', 'children': [{'name': 'BS3TextAreaFieldWidget'}]}, {'name': 'BaseFilter', 'children': [{'name': 'FilterStartsWith'}, {'name': 'FilterSmaller'}, {'name': 'FilterRelation', 'children': [{'name': 'FilterRelationOneToManyEqual'}, {'name': 'FilterRelationOneToManyNotEqual'}, {'name': 'FilterRelationManyToManyEqual'}]}, {'name': 'FilterNotEqual'}, {'name': 'FilterEndsWith'}, {'name': 'FilterContains'}, {'name': 'FilterEqualFunction'}, {'name': 'FilterNotEndsWith'}, {'name': 'FilterNotContains'}, {'name': 'FilterNotStartsWith'}, {'name': 'FilterEqual'}, {'name': 'FilterGreater'}]}, {'name': 'FileStorage'}, {'name': 'SessionWrapper'}, {'name': 'BS3ImageUploadFieldWidget'}, {'name': 'Base', 'children': [{'name': 'PermissionView'}, {'name': 'ViewMenu'}, {'name': 'Role'}, {'name': 'User'}, {'name': 'Permission'}]}, {'name': 'Menu'}, {'name': 'TemplateFilters'}, {'name': 'Unique'}, {'name': 'LoginManager'}, {'name': 'Concatenable', 'children': [{'name': 'String'}]}, {'name': 'RenderTemplateWidget', 'children': [{'name': 'ShowWidget'}, {'name': 'FormWidget', 'children': [{'name': 'SearchWidget'}]}, {'name': 'ListWidget', 'children': [{'name': 'ListThumbnail'}, {'name': 'ListCarousel'}, {'name': 'ListBlock'}, {'name': 'ListItem'}]}, {'name': 'ChartWidget'}]}, {'name': 'DataRequired', 'children': [{'name': 'Required'}]}, {'name': 'DateTimePickerWidget'}, {'name': 'EqualTo'}, {'name': 'Extension', 'children': [{'name': 'SRegRequest'}, {'name': 'SRegResponse'}]}, {'name': 'Length'}, {'name': 'BS3FileUploadFieldWidget'}, {'name': 'OpenIDResponse'}, {'name': 'Consumer'}, {'name': 'BaseView', 'children': [{'name': 'SimpleFormView', 'children': [{'name': 'ResetMyPasswordView'}, {'name': 'ResetPasswordView'}]}, {'name': 'LocaleView'}, {'name': 'BaseModelView', 'children': [{'name': 'BaseCRUDView', 'children': [{'name': 'GeneralView', 'children': [{'name': 'PermissionViewGeneralView'}, {'name': 'UserGeneralView', 'children': [{'name': 'UserDBGeneralView'}, {'name': 'UserOIDGeneralView'}]}, {'name': 'RoleGeneralView'}, {'name': 'PermissionGeneralView'}, {'name': 'ViewMenuGeneralView'}]}]}, {'name': 'BaseChartView', 'children': [{'name': 'ChartView'}, {'name': 'TimeChartView'}]}]}, {'name': 'AuthView', 'children': [{'name': 'AuthDBView'}, {'name': 'AuthOIDView'}]}, {'name': 'IndexView'}]}, {'name': 'OpenID'}, {'name': '_MappedAttribute', 'children': [{'name': 'declared_attr'}]}, {'name': 'property', 'children': [{'name': 'declared_attr'}]}, {'name': '_DateAffinity', 'children': [{'name': 'Integer'}, {'name': 'DateTime'}]}, {'name': 'Operators', 'children': [{'name': 'ColumnOperators', 'children': [{'name': 'ColumnElement', 'children': [{'name': 'ColumnClause', 'children': [{'name': 'Column'}]}]}]}]}, {'name': 'FileManager', 'children': [{'name': 'ImageManager'}]}, {'name': 'GeneralModelConverter'}, {'name': 'Visitable', 'children': [{'name': 'ClauseElement', 'children': [{'name': 'Selectable', 'children': [{'name': 'FromClause', 'children': [{'name': 'TableClause', 'children': [{'name': 'Table'}]}]}]}, {'name': 'ColumnElement', 'children': [{'name': 'ColumnClause', 'children': [{'name': 'Column'}]}]}]}, {'name': 'TypeEngine', 'children': [{'name': 'Integer'}, {'name': 'TypeDecorator', 'children': [{'name': 'ImageColumn'}, {'name': 'FileColumn'}]}, {'name': 'Boolean'}, {'name': 'String'}, {'name': 'DateTime'}]}, {'name': 'SchemaItem', 'children': [{'name': 'Column'}, {'name': 'Table'}, {'name': 'ForeignKey'}, {'name': 'MetaData'}]}]}, {'name': 'Filters'}, {'name': 'MenuItem'}, {'name': 'Inspector'}, {'name': 'BaseMixin', 'children': [{'name': 'AuditMixin'}]}, {'name': 'groupby'}, {'name': 'Select', 'children': [{'name': 'Select2ManyWidget'}, {'name': 'Select2Widget'}]}, {'name': 'BaseException', 'children': [{'name': 'Exception', 'children': [{'name': 'SQLAlchemyError', 'children': [{'name': 'StatementError', 'children': [{'name': 'DBAPIError', 'children': [{'name': 'DatabaseError', 'children': [{'name': 'IntegrityError'}]}]}]}, {'name': 'InvalidRequestError', 'children': [{'name': 'NoResultFound'}]}]}, {'name': 'StandardError', 'children': [{'name': 'ValueError', 'children': [{'name': 'ValidationError'}]}]}]}]}]}, {'name': 'DataModel', 'children': [{'name': 'SQLAModel'}]}]}
+
+var width = 960,
+    height = 2900;
+
+var cluster = d3.layout.cluster()
+    .size([height, width - 260]);
+
+var diagonal = d3.svg.diagonal()
+    .projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(40,0)");
+
+  var nodes = cluster.nodes(treeData),
+      links = cluster.links(nodes);
+
+  var link = svg.selectAll(".link")
+      .data(links)
+      .enter().append("path")
+      .attr("class", "link")
+      .attr("d", diagonal);
+
+  
+  var node = svg.selectAll(".node")
+      .data(nodes)
+      .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+
+  node.append("circle")
+      .attr("r", 10.5);
+
+  node.append("text")
+      .attr("dx", function(d) { return d.children ? -8 : 8; })
+      .attr("dy", 10)
+      .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+      .text(function(d) { return d.name; });
+
+
+d3.select(self.frameElement).style("height", height + "px");
+
+</script>

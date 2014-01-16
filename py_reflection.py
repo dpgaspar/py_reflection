@@ -36,7 +36,7 @@ class ClassNode(Node):
         super(ClassNode, self).__init__(*kwargs)
         
     def __repr__(self):
-        return self.value.__module__ + '.' + self.name
+        return self.name
  
     def dump(self, depth):
         retstr = self.value.__module__ + '.' + self.name
@@ -81,7 +81,7 @@ class PKGModuleReflection(BaseReflection):
         modules = self.get_modules(module)
         if modules:
             for imp, name, ispkg in modules:
-                if ispkg: 
+                if ispkg:
                     if hasattr(module, name):
                         self.get_all_classes(getattr(module,name), depth + 1)
                 else:
@@ -91,7 +91,6 @@ class PKGModuleReflection(BaseReflection):
         for name, value in self.get_classes(module):
             self.add_class(name,value)
 
-    
     def add_class(self, name, value, depth = 0):
         flag = True
         for parent in value.__bases__:
@@ -112,7 +111,6 @@ class PKGModuleReflection(BaseReflection):
 
 
 cr = PKGModuleReflection(sys.argv[1])
-cr.class_tree.debug()
+#cr.class_tree.debug()
 #cr.class_tree.print_map(map_func=ClassNode.dump)
-new_tree = {}
-print cr.class_tree.get_json_d3(new_tree = new_tree)
+print cr.class_tree.get_json_d3()
