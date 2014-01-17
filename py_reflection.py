@@ -51,7 +51,10 @@ class BaseReflection(object):
     def __init__(self, obj_reflection):
         self.obj_reflection = obj_reflection
 
-class PKGModuleReflection(BaseReflection):
+class Mix(object):
+    pass
+
+class PKGModuleReflection(Mix,BaseReflection):
 
     def __init__(self, package_name):
         self.package_name = package_name
