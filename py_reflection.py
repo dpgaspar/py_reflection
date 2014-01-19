@@ -3,6 +3,7 @@ import sys
 import os, pkgutil
 import imp
 import json
+import re
 from treedict import TreeDict
 
 class Node(object):
@@ -36,7 +37,7 @@ class ClassNode(Node):
         super(ClassNode, self).__init__(*kwargs)
         
     def __repr__(self):
-        return self.name
+        return self.value.__module__ + '.' + self.name
  
     def dump(self, depth):
         retstr = self.value.__module__ + '.' + self.name
@@ -116,4 +117,4 @@ class PKGModuleReflection(Mix,BaseReflection):
 cr = PKGModuleReflection(sys.argv[1])
 #cr.class_tree.debug()
 #cr.class_tree.print_map(map_func=ClassNode.dump)
-print cr.class_tree.get_json_d3()
+print cr.class_tree.get_json_d3(root_name='INICIO')

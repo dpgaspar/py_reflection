@@ -48,21 +48,21 @@ class TreeDict(object):
         tree = tree or self.tree
         new = []
         for key in tree:
+            childs = tree.get(key)
             node = {}
             node['name'] = str(key) 
-            childs = tree.get(key)
             if childs:
-                node['children'] = self._get_json_d3(childs, depth +1)
+               node['children'] = self._get_json_d3(tree = childs, depth = depth +1)
             new.append(node)
         return new
     
-    def get_json_d3(self):
+    def get_json_d3(self, root_name = None):
         new = {}
-        new['name'] = 'ROOT'
+        new['name'] = root_name or 'ROOT'
         new['children'] = self._get_json_d3()
         return new
         
-class Graph(object)
+class Graph(object):
 
     nodes = None
     links = None
@@ -78,7 +78,7 @@ class Graph(object)
         return False
     
     def add_link(self, source, target):
-        if (source, target) not in self.links
+        if (source, target) not in self.links:
             self.links.append((source, target))
             return True
         return False
