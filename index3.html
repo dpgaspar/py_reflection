@@ -27,12 +27,50 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
+ function GetWidth()
+  {
+          var x = 0;
+          if (self.innerHeight)
+          {
+                  x = self.innerWidth;
+          }
+          else if (document.documentElement && document.documentElement.clientHeight)
+          {
+                  x = document.documentElement.clientWidth;
+          }
+          else if (document.body)
+          {
+                  x = document.body.clientWidth;
+          }
+          return x;
+  }
+
+  function GetHeight()
+  {
+          var y = 0;
+          if (self.innerHeight)
+          {
+                  y = self.innerHeight;
+          }
+          else if (document.documentElement && document.documentElement.clientHeight)
+          {
+                  y = document.documentElement.clientHeight;
+          }
+          else if (document.body)
+          {
+                  y = document.body.clientHeight;
+          }
+          return y;
+  }
+
+
+
 var treeData = {'name': 'ROOT', 'children': [{'name': 'object', 'children': [{'name': '_PackageBoundObject', 'children': [{'name': 'Blueprint'}]}, {'name': 'BaseForm', 'children': [{'name': 'NewBase', 'children': [{'name': 'Form', 'children': [{'name': 'DynamicForm', 'children': [{'name': 'ResetPasswordForm'}, {'name': 'LoginForm_db'}, {'name': 'LoginForm_oid'}]}, {'name': 'SecureForm', 'children': [{'name': 'SessionSecureForm', 'children': [{'name': 'Form'}]}]}]}]}]}, {'name': 'DatePickerWidget'}, {'name': 'SecurityManager'}, {'name': 'Babel'}, {'name': 'Field', 'children': [{'name': 'DateTimeField', 'children': [{'name': 'DateField'}]}, {'name': 'SelectFieldBase', 'children': [{'name': 'QuerySelectField', 'children': [{'name': 'QuerySelectMultipleField'}]}, {'name': 'SelectField'}]}, {'name': 'StringField', 'children': [{'name': 'TextField', 'children': [{'name': 'FileUploadField'}, {'name': 'ImageUploadField'}, {'name': 'HiddenField'}, {'name': 'PasswordField'}, {'name': 'TextAreaField'}]}]}, {'name': 'BooleanField'}, {'name': 'IntegerField'}]}, {'name': 'Input', 'children': [{'name': 'PasswordInput', 'children': [{'name': 'BS3PasswordFieldWidget'}]}, {'name': 'TextInput', 'children': [{'name': 'BS3TextFieldWidget'}]}]}, {'name': 'Immutable', 'children': [{'name': 'TableClause', 'children': [{'name': 'Table'}]}, {'name': 'ColumnClause', 'children': [{'name': 'Column'}]}]}, {'name': 'SchemaEventTarget', 'children': [{'name': 'SchemaType', 'children': [{'name': 'Boolean'}]}, {'name': 'SchemaItem', 'children': [{'name': 'Column'}, {'name': 'Table'}, {'name': 'ForeignKey'}, {'name': 'MetaData'}]}]}, {'name': 'ActionItem'}, {'name': 'basestring', 'children': [{'name': 'unicode', 'children': [{'name': 'HTMLString'}]}]}, {'name': 'BaseApp'}, {'name': 'BabelManager'}, {'name': 'TextArea', 'children': [{'name': 'BS3TextAreaFieldWidget'}]}, {'name': 'BaseFilter', 'children': [{'name': 'FilterStartsWith'}, {'name': 'FilterSmaller'}, {'name': 'FilterRelation', 'children': [{'name': 'FilterRelationOneToManyEqual'}, {'name': 'FilterRelationOneToManyNotEqual'}, {'name': 'FilterRelationManyToManyEqual'}]}, {'name': 'FilterNotEqual'}, {'name': 'FilterEndsWith'}, {'name': 'FilterContains'}, {'name': 'FilterEqualFunction'}, {'name': 'FilterNotEndsWith'}, {'name': 'FilterNotContains'}, {'name': 'FilterNotStartsWith'}, {'name': 'FilterEqual'}, {'name': 'FilterGreater'}]}, {'name': 'FileStorage'}, {'name': 'SessionWrapper'}, {'name': 'BS3ImageUploadFieldWidget'}, {'name': 'Base', 'children': [{'name': 'PermissionView'}, {'name': 'ViewMenu'}, {'name': 'Role'}, {'name': 'User'}, {'name': 'Permission'}]}, {'name': 'Menu'}, {'name': 'TemplateFilters'}, {'name': 'Unique'}, {'name': 'LoginManager'}, {'name': 'Concatenable', 'children': [{'name': 'String'}]}, {'name': 'RenderTemplateWidget', 'children': [{'name': 'ShowWidget'}, {'name': 'FormWidget', 'children': [{'name': 'SearchWidget'}]}, {'name': 'ListWidget', 'children': [{'name': 'ListThumbnail'}, {'name': 'ListCarousel'}, {'name': 'ListBlock'}, {'name': 'ListItem'}]}, {'name': 'ChartWidget'}]}, {'name': 'DataRequired', 'children': [{'name': 'Required'}]}, {'name': 'DateTimePickerWidget'}, {'name': 'EqualTo'}, {'name': 'Extension', 'children': [{'name': 'SRegRequest'}, {'name': 'SRegResponse'}]}, {'name': 'Length'}, {'name': 'BS3FileUploadFieldWidget'}, {'name': 'OpenIDResponse'}, {'name': 'Consumer'}, {'name': 'BaseView', 'children': [{'name': 'SimpleFormView', 'children': [{'name': 'ResetMyPasswordView'}, {'name': 'ResetPasswordView'}]}, {'name': 'LocaleView'}, {'name': 'BaseModelView', 'children': [{'name': 'BaseCRUDView', 'children': [{'name': 'GeneralView', 'children': [{'name': 'PermissionViewGeneralView'}, {'name': 'UserGeneralView', 'children': [{'name': 'UserDBGeneralView'}, {'name': 'UserOIDGeneralView'}]}, {'name': 'RoleGeneralView'}, {'name': 'PermissionGeneralView'}, {'name': 'ViewMenuGeneralView'}]}]}, {'name': 'BaseChartView', 'children': [{'name': 'ChartView'}, {'name': 'TimeChartView'}]}]}, {'name': 'AuthView', 'children': [{'name': 'AuthDBView'}, {'name': 'AuthOIDView'}]}, {'name': 'IndexView'}]}, {'name': 'OpenID'}, {'name': '_MappedAttribute', 'children': [{'name': 'declared_attr'}]}, {'name': 'property', 'children': [{'name': 'declared_attr'}]}, {'name': '_DateAffinity', 'children': [{'name': 'Integer'}, {'name': 'DateTime'}]}, {'name': 'Operators', 'children': [{'name': 'ColumnOperators', 'children': [{'name': 'ColumnElement', 'children': [{'name': 'ColumnClause', 'children': [{'name': 'Column'}]}]}]}]}, {'name': 'FileManager', 'children': [{'name': 'ImageManager'}]}, {'name': 'GeneralModelConverter'}, {'name': 'Visitable', 'children': [{'name': 'ClauseElement', 'children': [{'name': 'Selectable', 'children': [{'name': 'FromClause', 'children': [{'name': 'TableClause', 'children': [{'name': 'Table'}]}]}]}, {'name': 'ColumnElement', 'children': [{'name': 'ColumnClause', 'children': [{'name': 'Column'}]}]}]}, {'name': 'TypeEngine', 'children': [{'name': 'Integer'}, {'name': 'TypeDecorator', 'children': [{'name': 'ImageColumn'}, {'name': 'FileColumn'}]}, {'name': 'Boolean'}, {'name': 'String'}, {'name': 'DateTime'}]}, {'name': 'SchemaItem', 'children': [{'name': 'Column'}, {'name': 'Table'}, {'name': 'ForeignKey'}, {'name': 'MetaData'}]}]}, {'name': 'Filters'}, {'name': 'MenuItem'}, {'name': 'Inspector'}, {'name': 'BaseMixin', 'children': [{'name': 'AuditMixin'}]}, {'name': 'groupby'}, {'name': 'Select', 'children': [{'name': 'Select2ManyWidget'}, {'name': 'Select2Widget'}]}, {'name': 'BaseException', 'children': [{'name': 'Exception', 'children': [{'name': 'SQLAlchemyError', 'children': [{'name': 'StatementError', 'children': [{'name': 'DBAPIError', 'children': [{'name': 'DatabaseError', 'children': [{'name': 'IntegrityError'}]}]}]}, {'name': 'InvalidRequestError', 'children': [{'name': 'NoResultFound'}]}]}, {'name': 'StandardError', 'children': [{'name': 'ValueError', 'children': [{'name': 'ValidationError'}]}]}]}]}]}, {'name': 'DataModel', 'children': [{'name': 'SQLAModel'}]}]}
 
 
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
-    width = 960 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    width = GetWidth() - margin.right - margin.left,
+    height = GetHeight() - margin.top - margin.bottom;
     
 var i = 0,
     duration = 650,
