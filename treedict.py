@@ -62,3 +62,26 @@ class TreeDict(object):
         new['children'] = self._get_json_d3()
         return new
         
+class Graph(object)
+
+    nodes = None
+    links = None
+    
+    def __init__(self):
+        self.nodes = []
+        self.links = []
+        
+    def add_node(self, node):
+        if node not in self.nodes:
+            self.nodes.append(node)
+            return True
+        return False
+    
+    def add_link(self, source, target):
+        if (source, target) not in self.links
+            self.links.append((source, target))
+            return True
+        return False
+    
+    
+    
