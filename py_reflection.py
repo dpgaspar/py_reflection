@@ -37,7 +37,7 @@ class ClassNode(Node):
         super(ClassNode, self).__init__(*kwargs)
         
     def __repr__(self):
-        return self.value.__module__ + '.' + self.name
+        return self.name
  
     def dump(self, depth):
         retstr = self.value.__module__ + '.' + self.name
@@ -101,7 +101,8 @@ class PKGModuleReflection(Mix,BaseReflection):
             flag = False
             self.add_class(parent.__name__,parent, depth + 1)
             self.class_tree.add_node(ClassNode(name, value),ClassNode(parent.__name__,parent))
-        if flag: self.class_tree.add_node(ClassNode(name, value))
+        if flag:
+            self.class_tree.add_node(ClassNode(name, value))
     
     def get_classes(self, module = None):
         module = module or self.package
@@ -114,7 +115,3 @@ class PKGModuleReflection(Mix,BaseReflection):
         else: return []
 
 
-cr = PKGModuleReflection(sys.argv[1])
-#cr.class_tree.debug()
-#cr.class_tree.print_map(map_func=ClassNode.dump)
-print cr.class_tree.get_json_d3(root_name='INICIO')
